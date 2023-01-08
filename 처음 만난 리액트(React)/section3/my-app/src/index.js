@@ -1,26 +1,34 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// import Library from './chapter_03/Library'
+import Library from './chapter_03/Library';
 import Clock from './chapter_04/Clock';
+import CommentList from './chapter_05/CommentList';
+import NotificationList from './chapter_06/NotificationList'
 
-// ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
 //   <React.StrictMode>
-//     <Library />
+//     <App />
+//   </React.StrictMode>
+// );
+
+// root.render(
+//   <React.StrictMode>
+//     <CommentList/>
 //   </React.StrictMode>,
 //   document.getElementById('root')
 // );
 
-setInterval(() => {
-  ReactDOM.render(
-    <React.StrictMode>
-      <Clock/>
-    </React.StrictMode>,
-    document.getElementById('root')
-  )
-}, 1000); // 1000ms(=1s) 마다 render함수 실행(돔을 다시 쓴다)
+root.render(
+  <React.StrictMode>
+    <NotificationList/>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
