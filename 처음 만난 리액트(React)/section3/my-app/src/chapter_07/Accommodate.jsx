@@ -6,6 +6,14 @@ const MAX_CAPACITY = 10
 function Accommodate(props) {
     const [isFull, setIsfull] = useState(false)
     const [count, increaseCount, decreaseCount] = useCounter(0)
+    // useCount의 return -> [(update된 값)count, increaseCount, decreaseCount]
+
+    ///
+    // useCounter.jsx를 별도로 만들지 않아도 됨.
+    // const [count, setCount] = useState(0)
+    // const increaseCount = () => setCount((count) => count + 1)
+    // const decreaseCount = () => setCount((count) => Math.max(count - 1, 0))
+    ///
 
     // 마운트된 직후 + 컴포넌트 업데이트 마다 호출
     useEffect(() => {
@@ -14,7 +22,7 @@ function Accommodate(props) {
         console.log(`isFull: ${isFull}`)
     })
 
-    // 마운트된 직후, 카운트값이 바뀔 때만 호출
+    // 마운트된 직후, 의존배열 [count]값이 바뀔 때만 호출
     useEffect(() => {
         setIsfull(count >= MAX_CAPACITY)
         console.log(`Current count value: ${count}`)
@@ -25,7 +33,6 @@ function Accommodate(props) {
             <p>{`총 ${count}명 수용했습니다.`}</p>
 
             <button onClick={increaseCount} disabled={isFull}>
-            
                 입장
             </button>
             <button onClick={decreaseCount}>퇴장</button>
